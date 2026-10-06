@@ -1,0 +1,46 @@
+text,label
+Congratulations! You have won a $1000 gift card. Click http://secure-prize-login.example/claim and verify your account now.,Phishing
+Urgent: Your bank account will be suspended today. Confirm your identity at http://verify-bank-login.example/security.,Phishing
+Your Microsoft 365 password expires today. Sign in at http://microsoft-office-verify.example to keep access.,Phishing
+You have an unpaid delivery fee. Pay $2.99 at http://parcel-fee-check.example immediately.,Phishing
+Security alert: unusual login detected. Verify your account at http://account-security-check.example/login.,Phishing
+Final notice: your tax refund is waiting. Submit your banking details at http://refund-portal.example.,Phishing
+Your mailbox is full. Click http://mailbox-storage.example/upgrade to avoid losing messages.,Phishing
+You were selected for an exclusive reward. Confirm your details and claim now: http://reward-confirm.example.,Phishing
+"Dear customer, your payment failed. Update your card details at http://payment-update.example within 24 hours.",Phishing
+Your account has been compromised. Download the attached security tool and run it immediately.,Phishing
+Reset your password now using this link: http://password-reset-secure.example/login.,Phishing
+You are eligible for a loan. Send your OTP and bank details to complete verification.,Phishing
+Immediate action required: verify your identity to unlock your account at http://verify-user.example.,Phishing
+Winner notification: claim your lottery prize by paying a small processing fee today.,Phishing
+Your cloud storage subscription will expire. Confirm billing information at http://cloud-billing.example.,Phishing
+"We detected suspicious activity. Enter your username, password and OTP at http://secure-login.example.",Phishing
+Invoice overdue. Open http://invoice-review.example/download and provide your login credentials.,Phishing
+You have received a confidential document. Login here http://document-share-verify.example to view it.,Phishing
+Your payroll information needs verification. Reply with your employee ID and password.,Phishing
+Important security notice: your account will be deleted unless you verify it today.,Phishing
+"Hi team, please find the agenda for tomorrow's project meeting attached. Let me know if you have questions.",Safe
+Your monthly electricity bill is ready. You can view it through the official customer portal or mobile app.,Safe
+The library will be closed on Saturday for maintenance. Normal hours resume on Monday.,Safe
+Reminder: your appointment is scheduled for Tuesday at 10 AM. Please arrive 10 minutes early.,Safe
+Thanks for submitting the assignment. Your instructor will review it and share feedback next week.,Safe
+Your order has shipped and is expected to arrive on Friday. Track it using the official shopping app.,Safe
+The quarterly team meeting is scheduled for 3 PM in Conference Room B.,Safe
+Your bank statement for September is available in the official banking application.,Safe
+Please review the project requirements before our Friday discussion. No action is required today.,Safe
+Happy birthday! Wishing you a wonderful day. See you at dinner tonight.,Safe
+The university has published the examination timetable on the student portal.,Safe
+Please bring your student ID card to the examination hall.,Safe
+Your GitHub repository received a new issue from a project collaborator.,Safe
+The software maintenance window is planned for Sunday from 1 AM to 3 AM.,Safe
+Thank you for registering for the workshop. Your seat is confirmed.,Safe
+Your travel reservation is confirmed. The itinerary is available in the airline's official app.,Safe
+The HR team has shared the updated holiday calendar with all employees.,Safe
+Please find the meeting minutes attached for your review.,Safe
+Your package was delivered to the reception desk this afternoon.,Safe
+The campus coding club meeting starts at 5 PM in Lab 2.,Safe
+A new version of the company newsletter is available on the intranet.,Safe
+Your course registration has been successfully completed.,Safe
+The support team has closed your ticket after resolving the reported issue.,Safe
+Please remember to submit your timesheet by Friday evening.,Safe
+"The weather service predicts rain tomorrow, so carry an umbrella.",Safe

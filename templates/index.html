@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhishGuard AI | Email Detection</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="shield">🛡️</span> PhishGuard <b>AI</b></div>
+  <div class="tag">Machine Learning Email Security</div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <span class="pill">SCIKIT-LEARN • TF-IDF • LOGISTIC REGRESSION</span>
+      <h1>Phishing Email<br><span>Detection Model</span></h1>
+      <p>Paste an email below and let the trained machine learning model classify it as <b>Phishing</b> or <b>Safe</b>.</p>
+    </div>
+    <div class="stats">
+      <div><strong>{{ meta.accuracy }}%</strong><small>Test Accuracy</small></div>
+      <div><strong>{{ meta.samples }}</strong><small>Dataset Emails</small></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Analyze an Email</h2>
+      <button class="sample" onclick="loadSample()">Try Sample</button>
+    </div>
+    <textarea id="email" placeholder="Paste email content here..."></textarea>
+    <button class="analyze" onclick="analyze()">🔍 Analyze Email</button>
+    <div id="loading" class="loading hidden">Analyzing with the ML model...</div>
+    <div id="result" class="result hidden"></div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Extracted Features</h2>
+      <div id="features" class="feature-grid">
+        <div><span>URLs</span><b>—</b></div>
+        <div><span>Suspicious Keywords</span><b>—</b></div>
+        <div><span>Special Characters</span><b>—</b></div>
+        <div><span>IP-like URL</span><b>—</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Model Evaluation</h2>
+      <div class="matrix">
+        <div></div><b>Pred Safe</b><b>Pred Phishing</b>
+        <b>Actual Safe</b><span>{{ meta.confusion_matrix[0][0] }}</span><span>{{ meta.confusion_matrix[0][1] }}</span>
+        <b>Actual Phishing</b><span>{{ meta.confusion_matrix[1][0] }}</span><span>{{ meta.confusion_matrix[1][1] }}</span>
+      </div>
+      <button class="retrain" onclick="retrain()">↻ Retrain Model</button>
+    </div>
+  </section>
+</main>
+<script>
+const phishingSample = `URGENT: Your account will be suspended today. Verify your password and OTP at http://secure-account-verify.example/login to avoid losing access.`;
+function loadSample(){ document.getElementById('email').value = phishingSample; }
+async function analyze(){
+  const email = document.getElementById('email').value.trim();
+  if(!email){ alert('Please enter an email message.'); return; }
+  document.getElementById('loading').classList.remove('hidden');
+  document.getElementById('result').classList.add('hidden');
+  const res = await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+  const data = await res.json();
+  document.getElementById('loading').classList.add('hidden');
+  if(!res.ok){ alert(data.error || 'Something went wrong'); return; }
+  const phishing = data.prediction === 'Phishing';
+  const result = document.getElementById('result');
+  result.className = 'result ' + (phishing ? 'danger' : 'safe');
+  result.innerHTML = `<div class="result-title">${phishing ? '⚠️' : '✅'} ${data.prediction}</div>
+    <div class="confidence">Model confidence: <b>${data.confidence}%</b></div>
+    <div class="reasons"><b>Why?</b><ul>${data.reasons.map(r=>`<li>${r}</li>`).join('')}</ul></div>`;
+  const f=data.features;
+  document.getElementById('features').innerHTML =
+    `<div><span>URLs</span><b>${f.urls}</b></div>
+     <div><span>Suspicious Keywords</span><b>${f.suspicious_keywords}</b></div>
+     <div><span>Special Characters</span><b>${f.special_characters}</b></div>
+     <div><span>IP-like URL</span><b>${f.has_ip_like_url ? 'Yes':'No'}</b></div>`;
+}
+async function retrain(){
+  const r = await fetch('/retrain',{method:'POST'});
+  const d = await r.json();
+  alert(`${d.message}\nAccuracy: ${d.meta.accuracy}%`);
+  location.reload();
+}
+</script>
+</body>
+</html>
